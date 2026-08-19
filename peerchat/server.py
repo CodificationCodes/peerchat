@@ -1,6 +1,6 @@
 """Headless dedicated server for Peer Chat.
 
-Runs a single always-on room with no terminal UI — meant to run under
+Runs a single always-on room with no terminal UI, meant to run under
 systemd (or similar) on a machine you keep online, typically reached
 through a Cloudflare Tunnel as wss://yourdomain rather than a raw IP.
 
@@ -54,9 +54,9 @@ def _print_banner(args: argparse.Namespace) -> None:
     print(f"  Local network:  ws://{local_ip}:{args.port}")
     print(f"  Same machine:   ws://127.0.0.1:{args.port}")
     print()
-    print("  For friends outside your LAN (e.g. school wifi), expose this")
+    print("  For friends outside your LAN, expose this")
     print(f"  port through a tunnel and share the resulting wss:// address")
-    print(f"  instead — point your tunnel's ingress at ws://localhost:{args.port}.")
+    print(f"  instead, point your tunnel's ingress at ws://localhost:{args.port}.")
     print()
     if args.no_discovery:
         print("  LAN discovery (Scan Network): disabled")
