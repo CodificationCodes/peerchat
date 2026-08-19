@@ -1,6 +1,6 @@
 # Peer Chat
 
-A terminal chat app. No account, no central server required — anyone can
+A terminal chat app. No account, no dedicated server required, anyone can
 host a room from their own machine, or connect to a room someone else is
 running.
 
@@ -18,7 +18,7 @@ Then run it from anywhere:
 peerchat
 ```
 
-That's it — the installer sets up an isolated environment automatically
+The installer sets up an isolated environment automatically
 (using `pipx` if you have it, or a dedicated virtual environment if not),
 so it won't interfere with anything else on your system.
 
@@ -36,13 +36,10 @@ If you want to run just `peerchat`, add your user Scripts folder to PATH.
 
 ### Manual install
 
-If you'd rather not pipe a script into bash (fair enough), do it by hand:
-
 ```bash
 git clone https://github.com/CodificationCodes/peerchat.git
 cd peerchat
-pip install .          # add --break-system-packages if pip complains about
-                        # an "externally-managed-environment"
+pip install .          # add --break-system-packages if pip complains about an "externally-managed-environment"
 peerchat
 ```
 
@@ -54,12 +51,9 @@ peerchat
 4. **Join**: enter `ip:port` for the same wifi, or a `wss://` address if
    the host is running behind a tunnel (needed on networks with client
    isolation, e.g. most school wifi — ask whoever's hosting).
-5. **Scan**: finds rooms automatically on the same wifi — arrow down,
+5. **Scan**: finds rooms automatically on the same wifi, arrow down,
    Enter to join. Only works on the same local network.
 6. Type a message, press Enter to send. `/quit` to leave.
-
-While chatting you'll see live typing indicators and away/back status for
-everyone in the room.
 
 ## Updating
 
