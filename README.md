@@ -101,12 +101,7 @@ journalctl -u peerchat -f   # watch the logs
 
 ## Updating
 
-```bash
-pipx upgrade peerchat
-```
-
-If that doesn't pick up a new version (git-installed packages don't always
-upgrade cleanly through pipx), force a reinstall instead:
+Git-installed packages don't always upgrade cleanly through pipx, force a reinstall through:
 
 ```bash
 pipx install --force git+https://github.com/CodificationCodes/peerchat.git
