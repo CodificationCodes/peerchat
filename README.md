@@ -72,7 +72,7 @@ time), use `peerchat-server` — no terminal UI, just the room, driven by
 command-line flags:
 
 ```bash
-peerchat-server --name "Spike's Room" --port 5000
+peerchat-server --name "My Room" --port 5000
 ```
 
 It prints the address to share and then runs until you stop it (Ctrl+C).
@@ -82,7 +82,7 @@ log too. See `peerchat-server --help` for all options (`--bind`,
 `--no-discovery`).
 
 To reach it from outside your LAN (e.g. friends on school wifi), put it
-behind a tunnel — Cloudflare Tunnel works well and is what this project is
+behind a tunnel, Cloudflare Tunnel works well and is what this project is
 built/tested against: point your tunnel's public hostname at
 `http://localhost:5000` (HTTP ingress transparently proxies the WebSocket
 upgrade, no extra config needed), then friends connect from the app's
