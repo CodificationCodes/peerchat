@@ -101,7 +101,7 @@ class JoinScreen(Screen):
         yield Header()
         yield Label("Join a Room", id="subtitle")
         yield Label(
-            "LAN: ip:port  •  Remote (e.g. school wifi): wss://yourdomain",
+            "LAN: ip:port  •  Remote: wss://yourdomain",
             id="join-hint",
         )
         yield Input(placeholder="ip:port  or  wss://chat.example.com", id="addr")
