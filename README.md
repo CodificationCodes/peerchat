@@ -6,6 +6,8 @@ running.
 
 ## Install
 
+### macOS / Linux
+
 ```bash
 curl -sSL https://raw.githubusercontent.com/CodificationCodes/peerchat/main/install.sh | bash
 ```
@@ -19,6 +21,18 @@ peerchat
 That's it — the installer sets up an isolated environment automatically
 (using `pipx` if you have it, or a dedicated virtual environment if not),
 so it won't interfere with anything else on your system.
+
+### Windows (Command Prompt / PowerShell)
+
+```powershell
+git clone https://github.com/CodificationCodes/peerchat.git
+cd peerchat
+py -m pip install --user .
+py -m peerchat.cli
+```
+
+`py -m peerchat.cli` works even if your Python Scripts folder is not on PATH.
+If you want to run just `peerchat`, add your user Scripts folder to PATH.
 
 ### Manual install
 
