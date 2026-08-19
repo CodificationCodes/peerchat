@@ -12,25 +12,22 @@ running.
 curl -sSL https://raw.githubusercontent.com/CodificationCodes/peerchat/main/install.sh | bash
 ```
 
-Then run it from anywhere:
+The installer sets up an isolated environment automatically (using `pipx`
+if you have it, or a dedicated virtual environment if not) and adds
+`peerchat` to your PATH permanently — it edits your shell config itself
+(`~/.zshrc`/`~/.zprofile`, `~/.bashrc`/`~/.bash_profile`, or the fish/POSIX
+equivalent, whichever matches your shell), so you don't need to do anything
+by hand.
+
+**Open a new terminal window** after installing (shell config changes only
+take effect in new sessions), then run:
 
 ```bash
 peerchat
 ```
 
-The installer sets up an isolated environment automatically
-(using `pipx` if you have it, or a dedicated virtual environment if not),
-so it won't interfere with anything else on your system.
-
-If `peerchat` is not found on macOS, add this to your shell profile
-(`~/.zshrc` or `~/.bashrc`) and restart the terminal:
-
-```bash
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-If you want to run it immediately in the current terminal, run the same
-`export PATH=...` line first, then start Peer Chat again.
+If `peerchat` still isn't found after opening a new terminal, run the
+installer again — reinstalling is safe and idempotent.
 
 ### Windows (Command Prompt / PowerShell)
 
