@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "peerchat"
+version = "0.1.0"
+description = "Peer-hostable terminal chat app — no central server required"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "textual>=8.0",
+    "websockets>=13.0",
+]
+
+[project.scripts]
+peerchat = "peerchat.cli:main"
+
+[tool.setuptools]
+packages = ["peerchat"]
