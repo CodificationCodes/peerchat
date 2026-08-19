@@ -1,0 +1,51 @@
+# Peer Chat dedicated server — systemd service
+#
+# Setup:
+#   1. Install peerchat on this machine (see README), confirm `peerchat-server`
+#      works when you run it manually first.
+#   2. Edit the paths/values below (marked CHANGE ME) for your setup.
+#   3. Copy this file to /etc/systemd/system/peerchat.service
+#   4. sudo systemctl daemon-reload
+#   5. sudo systemctl enable --now peerchat
+#
+# Logs:
+#   journalctl -u peerchat -f
+#
+# Stop / restart:
+#   sudo systemctl stop peerchat
+#   sudo systemctl restart peerchat
+
+[Unit]
+Description=Peer Chat dedicated server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# CHANGE ME: the user this should run as (not root — create a dedicated
+# unprivileged user if you don't already have one, e.g. `useradd -m peerchat`)
+User=spike
+
+# CHANGE ME: full path to the peerchat-server binary. If you installed with
+# pipx, find it with: pipx list  (or: which peerchat-server if it's on PATH
+# for the user above)
+ExecStart=/home/spike/.local/bin/peerchat-server --name "Spike's Room" --port 5000
+
+Restart=on-failure
+RestartSec=5
+
+# Keep resource use bounded — a chat relay has no business using much of
+# either. Adjust if you add more rooms/features later.
+MemoryMax=256M
+CPUQuota=50%
+
+# Basic sandboxing — the server only needs network access, not filesystem
+# access to the rest of the system.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

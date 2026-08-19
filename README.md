@@ -38,10 +38,10 @@ If you want to run it immediately in the current terminal, run the same
 git clone https://github.com/CodificationCodes/peerchat.git
 cd peerchat
 py -m pip install --user .
-py -m peerchat.cli
+py -m peerchat
 ```
 
-`py -m peerchat.cli` works even if your Python Scripts folder is not on PATH.
+`py -m peerchat` works even if your Python Scripts folder is not on PATH.
 If you want to run just `peerchat`, add your user Scripts folder to PATH.
 
 ### Manual install
@@ -65,13 +65,55 @@ peerchat
    Enter to join. Only works on the same local network.
 6. Type a message, press Enter to send. `/quit` to leave.
 
+## Running a dedicated server
+
+For an always-on room (instead of hosting from the interactive app each
+time), use `peerchat-server` — no terminal UI, just the room, driven by
+command-line flags:
+
+```bash
+peerchat-server --name "Spike's Room" --port 5000
+```
+
+It prints the address to share and then runs until you stop it (Ctrl+C).
+By default it logs joins/leaves and *that* someone sent a message, but not
+the message text — add `--verbose` if you want full message content in the
+log too. See `peerchat-server --help` for all options (`--bind`,
+`--no-discovery`).
+
+To reach it from outside your LAN (e.g. friends on school wifi), put it
+behind a tunnel — Cloudflare Tunnel works well and is what this project is
+built/tested against: point your tunnel's public hostname at
+`http://localhost:5000` (HTTP ingress transparently proxies the WebSocket
+upgrade, no extra config needed), then friends connect from the app's
+**Join** screen with `wss://yourhostname`.
+
+**Keeping it running permanently:** see `peerchat.service` in this repo for
+a ready-to-edit systemd unit — it restarts the server automatically if it
+crashes and starts it on boot. Copy it to `/etc/systemd/system/peerchat.service`
+after editing the paths inside, then:
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable --now peerchat
+journalctl -u peerchat -f   # watch the logs
+```
+
+
 ## Updating
 
 ```bash
 pipx upgrade peerchat
 ```
 
-or, if you installed manually:
+If that doesn't pick up a new version (git-installed packages don't always
+upgrade cleanly through pipx), force a reinstall instead:
+
+```bash
+pipx install --force git+https://github.com/CodificationCodes/peerchat.git
+```
+
+Or, if you installed manually:
 
 ```bash
 cd peerchat && git pull && pip install .

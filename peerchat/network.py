@@ -1,4 +1,4 @@
-"""Networking layer for Peer Chat — WebSocket edition.
+"""Networking layer for Peer Chat, WebSocket edition.
 
 Why WebSockets instead of raw TCP sockets:
 

@@ -13,8 +13,13 @@ dependencies = [
     "websockets>=13.0",
 ]
 
+[project.urls]
+Homepage = "https://github.com/CodificationCodes/peerchat"
+Repository = "https://github.com/CodificationCodes/peerchat"
+
 [project.scripts]
 peerchat = "peerchat.cli:main"
+peerchat-server = "peerchat.server:main"
 
 [tool.setuptools]
 packages = ["peerchat"]
