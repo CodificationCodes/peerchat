@@ -22,6 +22,16 @@ The installer sets up an isolated environment automatically
 (using `pipx` if you have it, or a dedicated virtual environment if not),
 so it won't interfere with anything else on your system.
 
+If `peerchat` is not found on macOS, add this to your shell profile
+(`~/.zshrc` or `~/.bashrc`) and restart the terminal:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+If you want to run it immediately in the current terminal, run the same
+`export PATH=...` line first, then start Peer Chat again.
+
 ### Windows (Command Prompt / PowerShell)
 
 ```powershell
