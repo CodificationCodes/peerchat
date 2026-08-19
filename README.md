@@ -60,15 +60,14 @@ peerchat
 3. **Host**: pick a port and share the address it shows you.
 4. **Join**: enter `ip:port` for the same wifi, or a `wss://` address if
    the host is running behind a tunnel (needed on networks with client
-   isolation, e.g. most school wifi — ask whoever's hosting).
+   isolation).
 5. **Scan**: finds rooms automatically on the same wifi, arrow down,
    Enter to join. Only works on the same local network.
 6. Type a message, press Enter to send. `/quit` to leave.
 
 ## Running a dedicated server
 
-For an always-on room (instead of hosting from the interactive app each
-time), use `peerchat-server` — no terminal UI, just the room, driven by
+For an always-on room, use `peerchat-server` no terminal UI, just the room, operated through
 command-line flags:
 
 ```bash
@@ -77,19 +76,19 @@ peerchat-server --name "My Room" --port 5000
 
 It prints the address to share and then runs until you stop it (Ctrl+C).
 By default it logs joins/leaves and *that* someone sent a message, but not
-the message text — add `--verbose` if you want full message content in the
+the message text, add `--verbose` if you want full message content in the
 log too. See `peerchat-server --help` for all options (`--bind`,
 `--no-discovery`).
 
-To reach it from outside your LAN (e.g. friends on school wifi), put it
-behind a tunnel, Cloudflare Tunnel works well and is what this project is
+To reach it from outside your LAN, put it behind a tunnel, 
+Cloudflare Tunnel works well and is what this project is
 built/tested against: point your tunnel's public hostname at
 `http://localhost:5000` (HTTP ingress transparently proxies the WebSocket
 upgrade, no extra config needed), then friends connect from the app's
-**Join** screen with `wss://yourhostname`.
+**Join** screen with `wss://yourhostname`.Enter
 
 **Keeping it running permanently:** see `peerchat.service` in this repo for
-a ready-to-edit systemd unit — it restarts the server automatically if it
+a ready-to-edit systemd unit, it restarts the server automatically if it
 crashes and starts it on boot. Copy it to `/etc/systemd/system/peerchat.service`
 after editing the paths inside, then:
 
